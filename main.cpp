@@ -4,6 +4,7 @@
 #include <sstream>
 #include <stack>
 #include <queue>
+#include <climits>
 
 
 using std::vector;
@@ -211,7 +212,6 @@ void printQueue() {
 
 #pragma startup
 
-
 void printPaidNamesAndRemaining() {
     queue<string> customerQueue;
     string input;
@@ -232,7 +232,103 @@ void printPaidNamesAndRemaining() {
     }
     cout << customerQueue.size() << " people remaining." << endl;
 }
+
+#pragma endregion
+
+#pragma startup
+
+queue<string> inputNames() {
+    string input;
+    getline(cin, input);
+    istringstream istr(input);
+
+    queue<string> allPlayers;
+    string curPlayer;
+    while (istr >> curPlayer) {
+        allPlayers.push(curPlayer);
+    }
+
+    return allPlayers;
+}
+
+void hotPotato(queue<string>& names) {
+
+    int timesPassed;
+    cin >> timesPassed;
+
+    string nameToRemove;
+    while (names.size() > 1) {
+        for (int i = 1; i < timesPassed; ++i) {
+            names.push(names.front());
+            names.pop();
+        }
+
+        cout << "Removed " << names.front() << endl;
+        names.pop();
+    }
+
+    cout << "Last is " << names.front() << endl;
+}
+
+void printNames() {
+    queue<string> names = inputNames();
+    hotPotato(names);
+}
+
+#pragma endregion
+
+#pragma startup
+
+int basicStackOperations() {
+
+    int sizeOfStack, popNums, searchNum;
+    cin >> sizeOfStack >> popNums >> searchNum;
+
+    stack<int> numbers;
+
+    for (int i = 0; i < sizeOfStack; ++i) {
+        int curNum;
+        cin >> curNum;
+        numbers.push(curNum);
+    }
+
+    for (int i = 0; i < popNums; ++i) {
+        numbers.pop();
+    }
+    if (numbers.empty()) {
+        cout << "0";
+        return 0;
+    }
+
+    int smallest = INT_MAX;
+
+    while(!numbers.empty()){
+
+        int top = numbers.top();
+        numbers.pop();
+
+        if (searchNum == top) {
+            cout << "true";
+            return 0;
+        }
+        if(top < smallest){
+            smallest = top;
+        }
+    }
+
+    cout << smallest << endl;
+    return 0;
+}
+
+#pragma endregion
+
+#pragma startup
+
+
+
+
+
 int main() {
-    printPaidNamesAndRemaining();
+
     return 0;
 }
