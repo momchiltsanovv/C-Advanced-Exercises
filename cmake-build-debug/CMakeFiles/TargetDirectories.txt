@@ -1,0 +1,3 @@
+/Users/momchiltsanov/Developer/CLionProjects/SoftUni/Advanced/cmake-build-debug/CMakeFiles/Advanced.dir
+/Users/momchiltsanov/Developer/CLionProjects/SoftUni/Advanced/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/momchiltsanov/Developer/CLionProjects/SoftUni/Advanced/cmake-build-debug/CMakeFiles/rebuild_cache.dir
