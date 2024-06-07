@@ -302,7 +302,7 @@ int basicStackOperations() {
 
     int smallest = INT_MAX;
 
-    while(!numbers.empty()){
+    while (!numbers.empty()) {
 
         int top = numbers.top();
         numbers.pop();
@@ -311,7 +311,7 @@ int basicStackOperations() {
             cout << "true";
             return 0;
         }
-        if(top < smallest){
+        if (top < smallest) {
             smallest = top;
         }
     }
@@ -325,10 +325,122 @@ int basicStackOperations() {
 #pragma startup
 
 
+int basicQueueOperations() {
+    int sizeOfStack, popNums, searchNum;
+    cin >> sizeOfStack >> popNums >> searchNum;
 
+    queue<int> numbers;
+
+    for (int i = 0; i < sizeOfStack; ++i) {
+        int curNum;
+        cin >> curNum;
+        numbers.push(curNum);
+    }
+
+    for (int i = 0; i < popNums; ++i) {
+        numbers.pop();
+    }
+    if (numbers.empty()) {
+        cout << 0 << endl;
+        return 0;
+    }
+
+    int smallest = INT_MAX;
+    while (!numbers.empty()) {
+        int top = numbers.front();
+        numbers.pop();
+
+        if (top == searchNum) {
+            cout << "true" << endl;
+            return 0;
+        }
+
+        if (top < smallest) {
+            smallest = top;
+        }
+
+    }
+
+    cout << smallest;
+
+    return 0;
+}
+
+int minimum(stack<int> elements) {
+
+    int min = INT_MAX;
+    for (int i = 0; i <= elements.size(); ++i) {
+        int top = elements.top();
+        if (top < min) {
+            min = top;
+        }
+        elements.pop();
+    }
+    return min;
+}
+
+int maximum(stack<int> elements) {
+
+    int max = INT_MIN;
+    for (int i = 0; i <= elements.size(); ++i) {
+        int top = elements.top();
+        if (top > max) {
+             max = top;
+        }
+        elements.pop();
+    }
+    return max;
+}
+
+int maxAndMinElement() {
+
+    int inputLines;
+    cin >> inputLines;
+    stack<int> result;
+
+
+    int command;
+    while (inputLines--) {
+        cin >> command;
+        int element;
+
+        switch (command) {
+            case 1:
+                cin >> element;
+                result.push(element);
+                break;
+            case 2:
+                if (!result.empty()) {
+                    result.pop();
+                }
+                break;
+            case 3:
+                if (!result.empty()) {
+                    cout << maximum(result) << endl;
+                    }
+                break;
+            case 4:
+                if (!result.empty()) {
+                    cout << minimum(result) << endl;
+                }
+                break;
+        }
+    }
+
+
+    while (!result.empty()) {
+        cout << result.top();
+        result.pop();
+        if (!result.empty()) {
+            cout << ", ";
+        }
+
+    }
+    return 0;
+}
 
 
 int main() {
-
+    maxAndMinElement();
     return 0;
 }
