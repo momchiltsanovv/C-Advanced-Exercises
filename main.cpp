@@ -385,7 +385,7 @@ int maximum(stack<int> elements) {
     for (int i = 0; i <= elements.size(); ++i) {
         int top = elements.top();
         if (top > max) {
-             max = top;
+            max = top;
         }
         elements.pop();
     }
@@ -417,7 +417,7 @@ int maxAndMinElement() {
             case 3:
                 if (!result.empty()) {
                     cout << maximum(result) << endl;
-                    }
+                }
                 break;
             case 4:
                 if (!result.empty()) {
@@ -439,8 +439,61 @@ int maxAndMinElement() {
     return 0;
 }
 
+#pragma endregion
+
+#pragma startup
+
+int isComplete(queue<int>& orders, int& foodQuantity) {
+
+    while (foodQuantity > orders.front() && !orders.empty()) {
+        foodQuantity -= orders.front();
+        orders.pop();
+    }
+
+    return foodQuantity;
+
+}
+
+int input() {
+    int foodQuantity;
+    cin >> foodQuantity;
+    string ordersAsString;
+    cin.ignore();
+    getline(cin, ordersAsString);
+    istringstream iss(ordersAsString);
+
+    queue<int> orders;
+
+    int curOrder;
+    int max = INT_MIN;
+    while (iss >> curOrder) {
+        orders.push(curOrder);
+        if (curOrder > max) {
+            max = curOrder;
+        }
+    }
+    cout << max << endl;
+
+    isComplete(orders, foodQuantity);
+
+    if (foodQuantity < orders.front()) {
+        cout << "Orders left: ";
+        while (!orders.empty()) {
+            cout << orders.front() << " ";
+            orders.pop();
+        }
+        return 0;
+    }
+
+    cout << "Orders complete";
+
+    return 0;
+}
+
+#pragma endregion
+
 
 int main() {
-    maxAndMinElement();
+    input();
     return 0;
 }
