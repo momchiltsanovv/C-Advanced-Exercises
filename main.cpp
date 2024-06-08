@@ -492,8 +492,152 @@ int input() {
 
 #pragma endregion
 
+#pragma startup
+
+stack<int> readInputClothes() {
+    stack<int> clothes;
+    string input;
+    getline(cin, input);
+    istringstream iss(input);
+    int curPiece;
+    while (iss >> curPiece) {
+        clothes.push(curPiece);
+    }
+    return clothes;
+}
+
+int rackUsed(stack<int>& clothes, int& capacityOfRack) {
+    int sumOfClothes = 0;
+    int racksUsed = 1;
+    while (!clothes.empty()) {
+        if (sumOfClothes + clothes.top() > capacityOfRack) { ;
+            racksUsed++;
+            sumOfClothes = 0;
+        }
+        sumOfClothes += clothes.top();
+        clothes.pop();
+
+    }
+
+    return racksUsed;
+}
+
+void fashionBotique() {
+    stack<int> clothes = readInputClothes();
+    int capacityOfRack;
+    cin >> capacityOfRack;
+
+    cout << rackUsed(clothes, capacityOfRack);
+
+}
+
+#pragma endregion
+
+#pragma startup
+
+bool canFinishTour(queue<int> amounts, queue<int> distances) {
+
+    int reservoir = 0;
+    while (!amounts.empty()) {
+
+        reservoir += amounts.front();
+        int distanceToNext = distances.front();
+
+        if (reservoir < distanceToNext) {
+            return false;
+        }
+        reservoir -= distanceToNext;
+
+        distances.pop();
+        amounts.pop();
+    }
+
+    return true;
+}
+
+void truckTour() {
+    int stationsCount;
+    cin >> stationsCount;
+    queue<int> amounts;
+    queue<int> distances;
+
+    for (int i = 0; i < stationsCount; ++i) {
+        int buf;
+        cin >> buf;
+        amounts.push(buf);
+        cin >> buf;
+        distances.push(buf);
+    }
+
+
+    for (int curStation = 0; curStation < stationsCount; ++curStation) {
+        if (canFinishTour(amounts, distances)) {
+            cout << curStation << endl;
+            break;
+        }
+
+        int curDistance = distances.front();
+        int curAmount = amounts.front();
+        distances.pop();
+        amounts.pop();
+
+        distances.push(curDistance);
+        amounts.push(curAmount);
+    }
+
+}
+
+#pragma endregion
+
+#pragma startup
+
+
+bool validExpression(const string & input){
+
+    stack<char> brackets;
+
+    for (int idx = 0; idx < input.length(); ++idx) {
+
+        char curChar = input[idx];
+        int opening = 0;
+        switch (curChar) {
+            case '(':
+            case '[':
+            case '{':
+                brackets.push(curChar);
+                break;
+
+            case ')': opening = '('; break;
+            case ']': opening = '['; break;
+            case '}': opening = '{'; break;
+        }
+
+        if (opening) {
+            if (brackets.empty()) {
+                return false;
+            }
+            if (brackets.top() != opening) {
+                return false;
+            }
+            brackets.pop();
+        }
+    }
+    return brackets.empty();
+}
+void balancedParentheses() {
+
+
+    string input;
+    cin >> input;
+
+
+    cout <<(validExpression(input) ? "YES" : "NO");
+
+
+}
+
 
 int main() {
-    input();
+    balancedParentheses();
     return 0;
 }
