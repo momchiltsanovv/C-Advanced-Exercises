@@ -3,4 +3,6 @@ project(Advanced)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Advanced main.cpp)
+add_executable(Advanced main.cpp
+        StacksAndQueues/Stack&Queues.cpp
+        StacksAndQueues/Stack&Queues.h)
