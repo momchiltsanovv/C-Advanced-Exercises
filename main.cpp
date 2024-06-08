@@ -629,10 +629,7 @@ void balancedParentheses() {
 
     string input;
     cin >> input;
-
-
     cout <<(validExpression(input) ? "YES" : "NO");
-
 
 }
 
