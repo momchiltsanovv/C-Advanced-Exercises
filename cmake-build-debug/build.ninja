@@ -61,6 +61,12 @@ build CMakeFiles/Advanced.dir/StacksAndQueues/Stack&Queues.cpp.o: CXX_COMPILER__
   OBJECT_DIR = CMakeFiles/Advanced.dir
   OBJECT_FILE_DIR = CMakeFiles/Advanced.dir/StacksAndQueues
 
+build CMakeFiles/Advanced.dir/MapAndSet/Maps&Sets.cpp.o: CXX_COMPILER__Advanced_unscanned_Debug /Users/momchiltsanov/Developer/CLionProjects/SoftUni/Advanced/MapAndSet/Maps&Sets.cpp || cmake_object_order_depends_target_Advanced
+  DEP_FILE = "CMakeFiles/Advanced.dir/MapAndSet/Maps&Sets.cpp.o.d"
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/Advanced.dir
+  OBJECT_FILE_DIR = CMakeFiles/Advanced.dir/MapAndSet
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Advanced
@@ -69,7 +75,7 @@ build CMakeFiles/Advanced.dir/StacksAndQueues/Stack&Queues.cpp.o: CXX_COMPILER__
 #############################################
 # Link the executable Advanced
 
-build Advanced: CXX_EXECUTABLE_LINKER__Advanced_Debug CMakeFiles/Advanced.dir/main.cpp.o CMakeFiles/Advanced.dir/StacksAndQueues/Stack&Queues.cpp.o
+build Advanced: CXX_EXECUTABLE_LINKER__Advanced_Debug CMakeFiles/Advanced.dir/main.cpp.o CMakeFiles/Advanced.dir/StacksAndQueues/Stack&Queues.cpp.o CMakeFiles/Advanced.dir/MapAndSet/Maps&Sets.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
   OBJECT_DIR = CMakeFiles/Advanced.dir
   POST_BUILD = :
