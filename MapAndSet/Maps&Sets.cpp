@@ -32,5 +32,36 @@ void countSameValues() {
         cout << num << " - " << numbers[num] << " times" << endl;
     }
 
+}
+
+void averageStudentGrade() {
+
+    int input;
+    cin >> input;
+
+    map<string, vector<double> > studentNameAndGrades;
+
+    string curName;
+    double curGrade;
+
+    for (int i = 0; i < input; ++i) {
+        cin >> curName >> curGrade;
+        studentNameAndGrades[curName].push_back(curGrade);
+    }
+
+    for (const auto& entry: studentNameAndGrades) {
+        cout << entry.first << " -> ";
+        for (const auto& grade: entry.second) {
+            cout << setprecision(2) << fixed << grade << " ";
+        }
+        double curStudentSumOfGrades = 0;
+        double curStudentAverageGrade = 0;
+        for (auto & grade : entry.second) {
+            curStudentSumOfGrades += grade;
+            curStudentAverageGrade = curStudentSumOfGrades / entry.second.size();
+        }
+        cout << "(avg: " << setprecision(2) << fixed << curStudentAverageGrade << ")" << endl;
+    }
+
 
 }

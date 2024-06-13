@@ -6,6 +6,7 @@
 #define ADVANCED_MAPS_SETS_H
 
 #include <iostream>
+#include <iomanip>
 #include <map>
 #include <string_view>
 #include <unordered_map>
@@ -25,9 +26,13 @@ using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
-
+using std::setprecision;
+using std::fixed;
 
 
 void countSameValues();
+
+void averageStudentGrade();
+
 
 #endif //ADVANCED_MAPS_SETS_H

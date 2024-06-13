@@ -3,6 +3,7 @@
 
 
 #include <iostream>
+#include <iomanip>
 #include <map>
 #include <string_view>
 #include <unordered_map>
@@ -10,6 +11,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 using std::map;
 using std::unordered_map;
@@ -22,40 +24,45 @@ using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
+using std::setprecision;
+using std::fixed;
 
 
+void citiesByContinentAndCountry() {
 
+    map<string, map<string, vector<string> > > citiesByContinentAndCountry;
 
-void averageStudentGrade() {
+    int  lines;
+    cin >> lines;
 
-    map<string, vector<double>> numbers;
-    string curStudent;
-    int timesFound = 1;
-    string input;
-    getline(cin, input);
-    istringstream iss(input);
+    for (int i = 0; i < lines; ++i) {
+        string continent, country, city;
+        cin >> continent >> country >> city;
+        citiesByContinentAndCountry[continent][country].push_back(city);
+    }
 
-    while (iss >> curStudent) {
+    for (auto &continent : citiesByContinentAndCountry) {
+        cout << continent.first << ":" << endl;
+        for (auto &country : continent.second) {
+            cout << "  " << country.first << " -> ";
+            for (auto &city : country.second) {
+                sort(country.second.begin(), country.second.end());
 
-
-        auto it = numbers.find(curStudent);
-        if (it != numbers.end()) {
-            it->second++;
+                if(city != country.second.back()) {
+                    cout << city << ", ";
+                }
+                else
+                    cout << city;
+            }
+            cout << endl;
         }
-        numbers.insert(pair<double, int> {curStudent, timesFound});
 
     }
-
-    for (double num : `) {
-        cout << num << " - " << numbers[num] << " times" << endl;
-    }
-
 
 }
 
 
 int main() {
-
-    averageStudentGrade();
+    citiesByContinentAndCountry();
     return 0;
 }
