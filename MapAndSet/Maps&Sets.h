@@ -8,15 +8,17 @@
 #include <iostream>
 #include <iomanip>
 #include <map>
-#include <string_view>
 #include <unordered_map>
 #include <set>
 #include <string>
 #include <sstream>
 #include <vector>
+#include <algorithm>
+#include <unordered_set>
 
 using std::map;
 using std::unordered_map;
+using std::unordered_set;
 using std::set;
 using std::pair;
 using std::vector;
@@ -29,10 +31,23 @@ using std::endl;
 using std::setprecision;
 using std::fixed;
 
-
 void countSameValues();
 
 void averageStudentGrade();
+
+void citiesByContinentAndCountry();
+
+void recordUniqueNames();
+
+void parkingLot();
+
+void uniqueUsernames();
+
+void setOfElements();
+
+void periodicTable();
+
+void evenTimes();
 
 
 #endif //ADVANCED_MAPS_SETS_H
