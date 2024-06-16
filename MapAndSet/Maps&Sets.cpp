@@ -112,7 +112,7 @@ void recordUniqueNames() {
         cin >> name;
         if (uniqueNames.find(name) ==
             uniqueNames.end()) { //find returns end iterator to uniqueNames.end() if not found.
-            order.push_back(name); // adding it to the orders if its not found in uniqueNames
+            order.push_back(name); // adding it to the orders if it's not found in uniqueNames
         }
         uniqueNames.insert(name);
     }
