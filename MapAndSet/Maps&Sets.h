@@ -15,6 +15,7 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_set>
+#include <cmath>
 
 using std::map;
 using std::unordered_map;
@@ -30,7 +31,10 @@ using std::cout;
 using std::endl;
 using std::setprecision;
 using std::fixed;
+using std::min;
 
+
+//LAB TASKS
 void countSameValues();
 
 void averageStudentGrade();
@@ -49,5 +53,21 @@ void periodicTable();
 
 void evenTimes();
 
+//---------------------------
+// Exercises
+
+void countRealNumbers();
+
+void oddOccurrences();
+
+void largest3();
+
+void shortWords();
+
+void sortNumbers();
+
+void squares();
+
+void miners();
 
 #endif //ADVANCED_MAPS_SETS_H

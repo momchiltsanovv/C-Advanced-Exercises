@@ -5,6 +5,6 @@
 
 int main() {
 
-    evenTimes();
-    return 0;
+
+return 0;
 }

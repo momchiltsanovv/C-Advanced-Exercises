@@ -4,6 +4,8 @@
 
 #include "Maps&Sets.h"
 
+//LAB TASKS
+
 void countSameValues() {
 
     map<double, int> numbers;
@@ -234,7 +236,7 @@ void evenTimes() {
         collection[number]++;
     }
 
-    for (auto i : collection) {
+    for (auto i: collection) {
 
         if (i.second % 2 == 0) {
             cout << i.first << " ";
@@ -243,4 +245,178 @@ void evenTimes() {
     }
 
 
+}
+
+//---------------------------
+// Exercises
+
+void countRealNumbers() {
+
+    map<double, int> numbersList;
+    string numbers;
+    getline(cin, numbers);
+    istringstream iss(numbers);
+
+    double curNum;
+    while (iss >> curNum) {
+        numbersList[curNum]++;
+    }
+
+    for (auto number: numbersList) {
+        cout << number.first << " -> " << number.second << endl;
+    }
+}
+
+void oddOccurrences() {
+
+    string input;
+    getline(cin, input);
+    istringstream iss(input);
+    map<string, int> collection;
+    vector<string> order;
+
+
+    while (iss >> input) {
+        for (char& i: input) {
+            i = static_cast<char>(tolower(i));
+        }
+        if (collection.find(input) == collection.end()) {
+            order.push_back(input);
+        }
+        collection[input]++;
+
+    }
+
+    bool isFirst = true;
+    for (const string& w: order) {
+        int cur = collection[w];
+        if (cur % 2 != 0) {
+            if (!isFirst) {
+                cout << ", ";
+            }
+            cout << w;
+            isFirst = false;
+        }
+    }
+}
+
+void largest3() {
+
+    string numbers;
+    getline(cin, numbers);
+    istringstream iss(numbers);
+    double num;
+    vector<double> largest; //using a vector because it's easier to sort and print the largest after
+
+    while (iss >> num) {
+        largest.push_back(num);
+    }
+
+    sort(largest.rbegin(), largest.rend());
+    int count = min(3, static_cast<int>(largest.size())); // take the count we need to print
+
+    for (int i = 0; i < count; ++i) {
+        cout << largest[i] << ' ';
+    }
+}
+
+void shortWords() {
+
+    string sentence;
+    getline(cin, sentence);
+    istringstream iss(sentence);
+    string curWord;
+    set<string> words;
+    while (iss >> curWord) {
+        for (int i = 0; i < curWord.length(); ++i) {
+            curWord[i] = static_cast<char>(tolower(curWord[i]));
+        }
+        words.insert(curWord);
+    }
+    bool isFirst = true;
+    for (const auto& word: words) {
+        if (word.length() < 5) {
+            if (!isFirst) {
+                cout << ", ";
+            }
+            cout << word;
+            isFirst = false;
+        }
+    }
+}
+
+void sortNumbers() {
+
+    string nums;
+    getline(cin, nums);
+    istringstream iss(nums);
+    set<double> orderedNums;
+    double curNum;
+    while (iss >> curNum) {
+        orderedNums.insert(curNum);
+    }
+
+    bool isFirst = true;
+    for (auto num: orderedNums) {
+        if (!isFirst) {
+            cout << " <= ";
+        }
+        cout << num;
+        isFirst = false;
+    }
+
+
+}
+
+void squares() {
+
+    string inputNums;
+    getline(cin, inputNums);
+    istringstream iss(inputNums);
+
+
+    vector<int> nums;
+    int curNum;
+    while (iss >> curNum) {
+        nums.push_back(curNum);
+    }
+    sort(nums.begin(), nums.end());
+    for (auto it = nums.rbegin(); it != nums.rend(); ++it) {
+        int sq = static_cast<int>(sqrt(*it));
+        if (sq * sq == *it) {
+            cout << *it << " ";
+        }
+    }
+}
+
+void miners() {
+
+
+    string command;
+
+    map<string, int> resources;
+    vector<string> order;
+    map<string, string> originalCase;
+
+    cin >> command;
+    while (command != "stop") {
+        string lowerCommand = command;
+
+        transform(lowerCommand.begin(), lowerCommand.end(), lowerCommand.begin(), ::tolower);
+
+        // If this is the first time we've seen this resource, remember its original case
+        if (resources.find(lowerCommand) == resources.end()) {
+            order.push_back(lowerCommand);
+            originalCase[lowerCommand] = command;
+        }
+        int quantity;
+        cin >> quantity;
+
+        resources[lowerCommand] += quantity;
+        cin >> command;
+    }
+
+    for (const string& cur: order) {
+        cout << originalCase[cur] << " -> " << resources[cur] << endl;
+    }
 }
